@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'eecsvolunteer',
         'USER': 'db_user',
         'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'HOST': '120.27.44.159',
     }
 }
 
