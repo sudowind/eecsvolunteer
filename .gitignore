@@ -1,2 +1,6 @@
 # settings for pycharm
 /.idea/*
+
+# python
+*.pyc
+*.pyo
