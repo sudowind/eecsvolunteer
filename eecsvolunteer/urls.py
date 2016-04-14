@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from eecsvolunteer import home
-from eecsvolunteer import activity
+
+from eecsvolunteer.views import home, activity
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
