@@ -1,0 +1,49 @@
+<head>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script language="javascript">
+    function delete_activity(id) {
+        $.ajax({
+            "url": "delete?id="+id,
+            "type": "GET",
+            "dataType": "json",
+            "success": function(data) {
+            if(data['code']==1) {
+                alert('删除成功');
+                location.reload();
+            } else {
+                var msg = data['msg']||'删除失败';
+                alert(msg);
+            }
+            }
+        });
+    }
+</script>
+</head>
+
+<body>
+<h1> 电脑小队活动管理 </h1>
+
+<table border="1" width="80%" >
+    <tr>
+        <th> id </th>
+        <th> 地点 </th>
+        <th> 时间 </th>
+        <th> 操作 </th>
+    </tr>
+    {% for act in activities %}
+    <tr>
+        <td> {{ act.id }} </td>
+        <td> {{ act.place }} </td>
+        <td> {{ act.date }} </td>
+        <td align="center"> <input type="submit" name="delete" value="删除" class="button" onclick="delete_activity({{ act.id }})"> </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form method='post'>
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="提交">
+</form>
+
+</body>

@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from eecsvolunteer import home
+from eecsvolunteer import activity
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/', home.hello),
+    url(r'^activity/$', activity.index),
+    url(r'^activity/delete/', activity.delete),
 ]

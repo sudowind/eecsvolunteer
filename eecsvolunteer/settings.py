@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'genius',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'eecsvolunteer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eecsvolunteer',
+        'NAME': 'eecs_test',
         'USER': 'db_user',
         'PASSWORD': '123456',
         'HOST': '120.27.44.159',
