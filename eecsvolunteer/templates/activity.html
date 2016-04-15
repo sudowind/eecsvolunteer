@@ -1,27 +1,7 @@
-<head>
-    {% load staticfiles %}
-    <script src="{% static 'js/jquery-1.12.3.min.js'%}" type="text/javascript"></script>
-    <script language="javascript">
-        function delete_activity(id) {
-            $.ajax({
-                "url": "delete/?id="+id,
-                "type": "GET",
-                "dataType": "json",
-                "success": function(data) {
-                if(data['code']==1) {
-                    alert('删除成功');
-                    location.reload();
-                } else {
-                    var msg = data['msg']||'删除失败';
-                    alert(msg);
-                }
-                }
-            });
-        }
-    </script>
-</head>
+{% extends 'base.html' %}
+{% load bootstrap_toolkit %}
 
-<body>
+{% block content %}
 <h1> 电脑小队活动管理 </h1>
 
 <table border="1" width="80%" >
@@ -42,9 +22,32 @@
 </table>
 
 <form method='post'>
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="提交">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <input type="submit" value="提交">
 </form>
 
-</body>
+{% endblock %}
+
+{% block extrajs %}
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery-1.12.3.min.js'%}" type="text/javascript"></script>
+    <script language="javascript">
+        function delete_activity(id) {
+            $.ajax({
+                "url": "delete/?id="+id,
+                "type": "GET",
+                "dataType": "json",
+                "success": function(data) {
+                if(data['code']==1) {
+                    alert('删除成功');
+                    location.reload();
+                } else {
+                    var msg = data['msg']||'删除失败';
+                    alert(msg);
+                }
+                }
+            });
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ current_page }}</title>
+    {% load staticfiles %}
+    <link rel = "Shortcut Icon" href='{% static "image/favicon.ico" %}'>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    {% block extrajs %}
+    {% endblock %}
+</body>
+</html>

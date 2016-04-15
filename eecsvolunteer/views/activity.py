@@ -18,8 +18,8 @@ def index(request):
         form = ActivityForm()
     activities = Activity.objects.order_by('id')
 
-    return render_to_response('templates/activity.html', {'activities': activities, 'form': form},
-                              context_instance=RequestContext(request))
+    return render_to_response('templates/activity.html', {'activities': activities, 'form': form,
+                                                          'current_page': 'Activity'}, context_instance=RequestContext(request))
 
 
 def delete(request):
