@@ -47,3 +47,9 @@ def create(request):
         data['code'] = 0
         data['msg'] = 'POST required'
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def get_activity_table(request):
+    activities = Activity.objects.order_by('id').values('id', 'date', 'place')
+    data = [x for x in activities]
+    return HttpResponse(data)
