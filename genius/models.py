@@ -39,9 +39,9 @@ class CaseHistory(models.Model):
     contact = models.CharField(u'手机号', max_length=32)
     computer_model = models.CharField(u'电脑型号', max_length=128)
     problem = models.TextField(u'问题描述', max_length=512)
-    solution = models.TextField(u'解决办法', max_length=1024)
-    status = models.IntegerField(u'病例单状态', choices=CaseHistoryStatus.choices, default=CaseHistoryStatus.unknown)
-    volunteer = models.TextField(u'志愿者', max_length=512)
+    solution = models.TextField(u'解决办法', max_length=1024, blank=True)
+    status = models.IntegerField(u'病例单状态', choices=CaseHistoryStatus.choices, default=CaseHistoryStatus.waiting_for_repair)
+    volunteer = models.TextField(u'志愿者', max_length=512, blank=True)
 
     def __unicode__(self):
         return u'{0}'.format(self.id)
