@@ -32,10 +32,14 @@ def create(request):
         place = request.POST.get('place', '')
         date = request.POST.get('date', 0)
         if place and date:
-            date = int(date)
-            act = Activity(date=date, place=place)
-            act.save()
-            data['code'] = 1    # 1表示存储成功
+            try:
+                date = int(date)
+                act = Activity(date=date, place=place)
+                act.save()
+                data['code'] = 1    # 1表示存储成功
+            except ValueError:
+                data['code'] = 0
+                data['msg'] = '请输入数字'
         else:
             data['code'] = 0
             data['msg'] = 'invalid place or data'
