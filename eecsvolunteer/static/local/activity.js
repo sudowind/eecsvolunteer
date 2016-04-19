@@ -55,3 +55,20 @@ function create_activity() {
         }
     });
 }
+
+function load_activity_table() {
+    var url = 'get_activity_table/';
+    $('#activity_table').bootstrapTable('destroy');
+    $('#activity_table').bootstrapTable({
+        url: url,
+        method: 'get',
+        classes: 'table table-condensed table-hover table-striped',
+        dataType: 'json',
+        pagination: true,
+        pageSize: 10
+    });
+}
+
+function id_formatter(value, row) {
+    return '<button class="btn btn-danger" onclick="confirm_delete(value)"></button>'
+}

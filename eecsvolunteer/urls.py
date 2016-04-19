@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^activity/$', activity.index),
     url(r'^activity/delete/', activity.delete),
     url(r'^activity/create/', activity.create),
+    url(r'^activity/get_activity_table/', activity.get_activity_table),
 ]
