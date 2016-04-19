@@ -37,6 +37,144 @@
             }
             return cookieValue;
         }
+
+        // 通用提示信息框success/info/warning/error
+        var tips = function(msg, code) {
+            Tips.tips(msg, code, 0);
+        };
+        var Tips = (function() {
+            var in_time = 600;
+            var delay = 1200;
+            var opacity = 0.7;
+            var _init = function(msg, code) {
+            var tipsIDname = "messageTips";
+            var tipsID = "#" + tipsIDname;
+            if ($(tipsID).length == 0) {
+                var html = '<div id="'
+                    + tipsIDname
+                    + '" style="z-index:20000;min-width:60px;position:fixed;padding:2px 2em;text-align:center;line-height:30px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;"><i style="padding: 0 6px;font-size: 15px;"></i><span></span></div>'
+                $('body').append(html);
+                $(window).bind('resize', function() {
+                if ($(tipsID).css('display') == "none")
+                    return;
+                self.stop(true, true)
+                $(tipsID).css({
+                    'left' : ($(window).width() - $(tipsID).width()) / 2
+                });
+                });
+            }
+            var self = $(tipsID), icon, color;
+            switch (code) {
+            case 100: // 加长时间 5s
+            case true:
+            case undefined:
+            case 'success':
+                color = '#5cb85c';
+                icon = 'iconfont icon-roundcheck';
+                break;
+            case 'info':
+                color = '#519AF6';
+                icon = 'iconfont icon-information';
+                break;
+            case 'warning':
+                color = '#ed9c28';
+                icon = 'iconfont icon-question';
+                break;
+            case false:
+            case 'error':
+                color = '#d9534f';
+                icon = 'iconfont icon-roundclose';
+                break;
+            default:
+                color = '';
+                icon = '';
+                break;
+            }
+
+            if (color != '') {
+                self.css({
+                'background' : color,
+                'color' : '#fff'
+                });
+                self.find('i').removeClass().addClass(icon);
+            }
+            if (msg != undefined)
+                self.find('span').html(msg);
+            return self;
+            };
+            var tips = function(msg, code, offset_top) {
+            if (typeof (msg) == 'object') {
+                code = msg.code;
+                msg = msg.data;
+            }
+            if (offset_top == undefined)
+                offset_top = 0;
+            var self = _init(msg, code);
+            if (code == 100) {
+                delay = 3500;
+            }
+            self.stop(true, true).css({
+                'display' : 'block',
+                'opacity' : '0',
+                'top' : offset_top - self.height(),
+                'left' : ($(window).width() - self.width()) / 2
+            }).animate({
+                opacity : opacity,
+                top : offset_top
+            }, in_time, 0).delay(delay).animate({
+                opacity : 0,
+                top : '-=' + (offset_top + self.height())
+            }, in_time, 0, function() {
+                $(this).css('display', 'none');
+            });
+            };
+            var loading = function(msg, code, offset_top) {
+            if (typeof (msg) == 'object') {
+                code = msg.code;
+                msg = msg.data;
+            }
+            if (offset_top == undefined)
+                offset_top = 0;
+            if (msg == undefined)
+                msg = 'loading...';
+
+            var self = _init(msg, code);
+            self.stop(true, true).css({
+                'display' : 'block',
+                'opacity' : '0',
+                'top' : offset_top - self.height(),
+                'left' : ($(window).width() - self.width()) / 2
+            }).animate({
+                opacity : opacity,
+                top : offset_top
+            }, in_time, 0);
+            };
+            var close = function(msg, code, offset_top) {
+            if (typeof (msg) == 'object') {
+                code = msg.code;
+                msg = msg.data;
+            }
+            if (offset_top == undefined)
+                offset_top = 0;
+            var self = _init(msg, code);
+
+            self.delay(delay).animate({
+                opacity : 0,
+                top : '-=' + (offset_top + self.height())
+            }, in_time, 0, function() {
+                $(this).css('display', 'none');
+            });
+            };
+            return {
+            tips : tips,
+            loading : loading,
+            close : close
+            }
+        })();
+        /** 显示bootstrap的tooltip* */
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
 </body>

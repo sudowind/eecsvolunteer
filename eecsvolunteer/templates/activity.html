@@ -76,11 +76,11 @@
                 "dataType": "json",
                 "success": function (data) {
                     if (data['code'] == 1) {
-                        alert('删除成功');
+                        tips('删除成功', 'success');
                         location.reload();
                     } else {
                         var msg = data['msg'] || '删除失败';
-                        alert(msg);
+                        tips(msg, 'error');
                     }
                 }
             });
@@ -101,11 +101,12 @@
                 'dataType': 'json',
                 'success': function(data) {
                     if (data['code'] == 1) {
-                        alert('good');
+                        tips('添加成功', 'success');
                         location.reload();
                     }
                     else {
-                        alert('bad');
+                        var msg = data['msg'] || '添加失败';
+                        tips(msg, 'error');
                     }
                 }
             });
