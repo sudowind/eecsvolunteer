@@ -9,18 +9,18 @@
             <table class="table table-hover" >
                 <thead>
                     <tr>
-                        <th> id </th>
-                        <th> 地点 </th>
+{#                        <th> id </th>#}
                         <th> 时间 </th>
+                        <th> 地点 </th>
                         <th> 操作 </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for act in activities %}
                     <tr>
-                        <td> {{ act.id }} </td>
-                        <td> {{ act.place }} </td>
+{#                        <td> {{ act.id }} </td>#}
                         <td> {{ act.date }} </td>
+                        <td> {{ act.place }} </td>
                         <td> <button class="btn btn-danger" onclick="confirm_delete({{ act.id }})"> 删除 </button> </td>
                     </tr>
                     {% endfor %}
@@ -31,7 +31,7 @@
             <div class="form-inline">
                 <div class="form-group">
                     <label for="activity_date"><span>活动时间：</span></label>
-                    <input type="text" class="form-control" id="activity_date" placeholder="输入活动时间">
+                    <input type="text" class="form-control" id="activity_date" placeholder="格式yyyyMMdd">
                 </div>
                 <div class="form-group">
                     <label for="activity_place"><span>活动地点：</span></label>

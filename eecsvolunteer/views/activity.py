@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
-from genius.models import ActivityForm, Activity
+from genius.models import Activity
 
 
 def index(request):
@@ -31,7 +31,6 @@ def create(request):
     if request.method == 'POST':
         place = request.POST.get('place', '')
         date = request.POST.get('date', 0)
-        print "place: {0} date: {1}".format(place, date)
         if place and date:
             date = int(date)
             act = Activity(date=date, place=place)
