@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^activity/get_activity_table/', activity.get_activity_table),
 
     url(r'^patient/$', patient.index),
+    url(r'^patient/add_case/', patient.add_case),
 
     url(r'^maintain/$', maintain.index),
     url(r'^maintain/apply/', maintain.apply),

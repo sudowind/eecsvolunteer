@@ -25,8 +25,14 @@
                     <label for="problem">电脑问题：</label>
                     <textarea class="form-control" id="problem"></textarea>
                 </div>
-                <button class="btn btn-default" onclick="">新建病例单</button>
+                <br /><br />
+                <div id="info_message"></div>
+                <button class="btn btn-default" onclick="add_case()">新建病例单</button>
             </div>
         </div>
     </div>
+{% endblock %}
+{% block extrajs %}
+    {% load staticfiles %}
+    <script src="{% static 'local/patient.js' %}" type="text/javascript"></script>
 {% endblock %}
