@@ -1,3 +1,4 @@
+# coding=utf-8
 import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render_to_response
@@ -7,23 +8,13 @@ from genius.models import ActivityForm, Activity
 
 
 def index(request):
-    if request.method == 'POST':
-        form = ActivityForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('/activity/')
-
-    else:
-        form = ActivityForm()
     activities = Activity.objects.order_by('id')
-
-    return render_to_response('templates/activity.html', {'activities': activities, 'form': form,
-                                                          'current_page': 'Activity'}, context_instance=RequestContext(request))
+    return render_to_response('templates/activity.html', {'activities': activities,
+                                                          'current_page': 'Activity'})
 
 
 def delete(request):
-    data = {}
+    data = dict()
     aid = request.GET.get('id')
     acts = Activity.objects.filter(id=aid)
     if len(acts) == 0:
@@ -32,4 +23,20 @@ def delete(request):
     else:
         acts[0].delete()
         data['code'] = 1
+    return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def create(request):
+    data = dict()
+    if request.method == 'POST':
+        place = request.POST.get('place', '')
+        date = request.POST.get('date', 0)
+        print "place: {0} date: {1}".format(place, date)
+        if place and date:
+            date = int(date)
+            act = Activity(date=date, place=place)
+            act.save()
+            data['code'] = 1    # 1表示存储成功
+            return HttpResponse(json.dumps(data), content_type='application/json')
+    data['code'] = 0
     return HttpResponse(json.dumps(data), content_type='application/json')

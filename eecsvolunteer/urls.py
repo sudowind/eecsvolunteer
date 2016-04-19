@@ -20,7 +20,8 @@ from eecsvolunteer.views import home, activity
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', home.hello),
+    url(r'^home/$', home.login),
     url(r'^activity/$', activity.index),
     url(r'^activity/delete/', activity.delete),
+    url(r'^activity/create/', activity.create),
 ]
