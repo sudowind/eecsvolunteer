@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
+from eecsvolunteer.logic.utils import qset2list
 from genius.models import Activity
 
 
@@ -50,6 +51,6 @@ def create(request):
 
 
 def get_activity_table(request):
-    activities = Activity.objects.order_by('id').values('id', 'date', 'place')
-    data = [x for x in activities]
+    activities = Activity.objects.order_by('id')
+    data = qset2list(activities)
     return HttpResponse(json.dumps(data), content_type='application/json')

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from eecsvolunteer.views import home, activity, patient
+from eecsvolunteer.views import home, activity, patient, maintain, case_history
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,4 +27,10 @@ urlpatterns = [
     url(r'^activity/get_activity_table/', activity.get_activity_table),
 
     url(r'^patient/$', patient.index),
+
+    url(r'^maintain/$', maintain.index),
+    url(r'^maintain/apply/', maintain.apply),
+    url(r'^maintain/diagnose/', maintain.diagnose),
+
+    url(r'^case_history/get_case_table/', case_history.get_case_table),
 ]

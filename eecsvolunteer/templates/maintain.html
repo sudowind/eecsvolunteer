@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1> 维修记录 </h1>
+            <table id="case_table" data-show-columns="true">
+                <thead>
+                    <tr>
+                        <th data-field="computer_model" data-align="center" data-valign="middle">型号</th>
+                        <th data-field="problem" data-align="center" data-valign="middle">问题描述</th>
+                        <th data-field="status" data-align="center" data-valign="middle" data-formatter="status_formatter">状态</th>
+                        <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div id="maintainModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteModalLabel">确认维修</h4>
+                </div>
+                <div class="modal-body" style="max-height: 266.4px; overflow-y: auto;">
+                    该病例不处于待维修状态,可能有人正在维修或已维修完毕,确认进行维修申请?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="maintainBtn" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+    {% load staticfiles %}
+    <script src='{% static "local/maintain.js" %}' type="text/javascript"></script>
+    <script type="text/javascript">
+        load_case_table();
+    </script>
+{% endblock %}
