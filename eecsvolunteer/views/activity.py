@@ -37,6 +37,10 @@ def create(request):
             act = Activity(date=date, place=place)
             act.save()
             data['code'] = 1    # 1表示存储成功
-            return HttpResponse(json.dumps(data), content_type='application/json')
-    data['code'] = 0
+        else:
+            data['code'] = 0
+            data['msg'] = 'invalid place or data'
+    else:
+        data['code'] = 0
+        data['msg'] = 'POST required'
     return HttpResponse(json.dumps(data), content_type='application/json')
