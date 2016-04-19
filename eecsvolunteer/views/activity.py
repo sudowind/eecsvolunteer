@@ -52,4 +52,4 @@ def create(request):
 def get_activity_table(request):
     activities = Activity.objects.order_by('id').values('id', 'date', 'place')
     data = [x for x in activities]
-    return HttpResponse(data)
+    return HttpResponse(json.dumps(data), content_type='application/json')

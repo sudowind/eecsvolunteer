@@ -15,7 +15,7 @@ function delete_activity(id) {
         "success": function (data) {
             if (data['code'] == 1) {
                 tips('删除成功', 'success');
-                location.reload();
+                load_activity_table()
             } else {
                 var msg = data['msg'] || '删除失败';
                 tips(msg, 'error');
@@ -43,7 +43,7 @@ function create_activity() {
         'success': function(data) {
             if (data['code'] == 1) {
                 tips('添加成功', 'success');
-                location.reload();
+                load_activity_table()
             }
             else {
                 var msg = data['msg'] || '添加失败';
@@ -70,5 +70,5 @@ function load_activity_table() {
 }
 
 function id_formatter(value, row) {
-    return '<button class="btn btn-danger" onclick="confirm_delete(value)"></button>'
+    return '<button class="btn btn-danger" onclick="confirm_delete('+value+')"> 删除 </button>'
 }

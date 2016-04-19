@@ -8,31 +8,11 @@
             <table id="activity_table" data-show-columns="true">
                 <thead>
                     <tr>
-                        <th data-field="date" data-align="center">时间</th>
-                        <th data-field="place" data-align="center">地点</th>
-                        <th data-field="id" data-align="center" data-formatter="id_formatter">操作</th>
+                        <th data-field="date" data-align="center" data-valign="middle">时间</th>
+                        <th data-field="place" data-align="center" data-valign="middle">地点</th>
+                        <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
                     </tr>
                 </thead>
-            </table>
-            <table class="table table-hover" >
-                <thead>
-                    <tr>
-{#                        <th> id </th>#}
-                        <th> 时间 </th>
-                        <th> 地点 </th>
-                        <th> 操作 </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for act in activities %}
-                    <tr>
-{#                        <td> {{ act.id }} </td>#}
-                        <td> {{ act.date }} </td>
-                        <td> {{ act.place }} </td>
-                        <td> <button class="btn btn-danger" onclick="confirm_delete({{ act.id }})"> 删除 </button> </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
             </table>
         </div>
         <div class="row">
@@ -62,7 +42,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button id="deleteBtn" type="button" class="btn btn-danger">删除</button>
+                    <button id="deleteBtn" type="button" class="btn btn-danger" data-dismiss="modal">删除</button>
                 </div>
             </div>
         </div>
