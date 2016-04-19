@@ -6,21 +6,25 @@
         <div class="row">
             <h1> 电脑小队活动管理 </h1>
 
-            <table border="1" width="80%" >
-                <tr>
-                    <th> id </th>
-                    <th> 地点 </th>
-                    <th> 时间 </th>
-                    <th> 操作 </th>
-                </tr>
-                {% for act in activities %}
-                <tr>
-                    <td> {{ act.id }} </td>
-                    <td> {{ act.place }} </td>
-                    <td> {{ act.date }} </td>
-                    <td align="center"> <input type="submit" name="delete" value="删除" class="btn btn-default" onclick="delete_activity({{ act.id }})"> </td>
-                </tr>
-                {% endfor %}
+            <table class="table table-hover" >
+                <thead>
+                    <tr>
+                        <th> id </th>
+                        <th> 地点 </th>
+                        <th> 时间 </th>
+                        <th> 操作 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for act in activities %}
+                    <tr>
+                        <td> {{ act.id }} </td>
+                        <td> {{ act.place }} </td>
+                        <td> {{ act.date }} </td>
+                        <td> <button class="btn btn-danger" onclick="confirm_delete({{ act.id }})"> 删除 </button> </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
         <div class="row">
@@ -37,11 +41,34 @@
             </div>
         </div>
     </div>
+
+    <div id="deleteModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteModalLabel">删除活动</h4>
+                </div>
+                <div class="modal-body" style="max-height: 266.4px; overflow-y: auto;">
+                    删除后不可恢复，确认删除吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="deleteBtn" type="button" class="btn btn-danger">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extrajs %}
     {% load staticfiles %}
     <script language="javascript">
+        function confirm_delete(id) {
+            $('#deleteBtn').attr('onclick', 'delete_activity('+id+')');
+            $('#deleteModal').modal('show');
+        }
+
         function delete_activity(id) {
             $.ajax({
                 "url": "delete/?id=" + id,
@@ -75,6 +102,7 @@
                 'success': function(data) {
                     if (data['code'] == 1) {
                         alert('good');
+                        location.reload();
                     }
                     else {
                         alert('bad');
