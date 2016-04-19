@@ -35,6 +35,8 @@ class Activity(models.Model):
 
 class CaseHistory(models.Model):
     activity = models.ForeignKey(Activity)
+    owner = models.CharField(u'机主', max_length=32)
+    contact = models.CharField(u'手机号', max_length=32)
     computer_model = models.CharField(u'电脑型号', max_length=128)
     problem = models.TextField(u'问题描述', max_length=512)
     solution = models.TextField(u'解决办法', max_length=1024)

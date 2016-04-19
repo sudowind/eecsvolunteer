@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>新建病例单</h1>
+            <hr class="col-md-12">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="owner">姓名：</label>
+                    <input type="text" class="form-control" id="owner" placeholder="填写姓名">
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <label for="contact">联系方式：</label>
+                    <input type="tel" class="form-control" id="contact" placeholder="手机号">
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <label for="computer_model">电脑型号：</label>
+                    <input type="text" class="form-control" id="computer_model" placeholder="填写电脑型号">
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <label for="problem">电脑问题：</label>
+                    <textarea class="form-control" id="problem"></textarea>
+                </div>
+                <button class="btn btn-default" onclick="">新建病例单</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
