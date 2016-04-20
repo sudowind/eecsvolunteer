@@ -31,7 +31,8 @@ urlpatterns = [
 
     url(r'^maintain/$', maintain.index),
     url(r'^maintain/apply/', maintain.apply),
-    url(r'^maintain/diagnose/', maintain.diagnose),
+    url(r'^maintain/success/', maintain.success),
+    url(r'^maintain/fail/', maintain.fail),
 
     url(r'^case_history/get_case_table/', case_history.get_case_table),
 ]

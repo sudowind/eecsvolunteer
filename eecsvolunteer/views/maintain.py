@@ -21,7 +21,7 @@ def apply(request):
         data['code'] = 0
         data['msg'] = 'Id does not exist'
     else:
-        if cases[0].status == 2:
+        if cases[0].status != 1:
             data['code'] = 2
             data['msg'] = '该病例不处于可维修状态'
         else:
@@ -31,7 +31,7 @@ def apply(request):
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-def diagnose(request):
+def success(request):
     data = dict()
     if request.method == 'POST':
         cid = request.POST.get('id')
@@ -43,6 +43,7 @@ def diagnose(request):
                 data['code'] = 0
                 data['msg'] = 'Id does not exist'
             else:
+                cases[0].status = 3
                 cases[0].solution = solution
                 cases[0].volunteer = volunteer
                 cases[0].save()
@@ -53,4 +54,18 @@ def diagnose(request):
     else:
         data['code'] = 0
         data['msg'] = 'POST required'
+    return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def fail(request):
+    data = dict()
+    cid = request.GET.get('id')
+    cases = CaseHistory.objects.filter(id=cid)
+    if len(cases) == 0:
+        data['code'] = 0
+        data['msg'] = 'Id does not exist'
+    else:
+        cases[0].status = 1
+        cases[0].save()
+        data['code'] = 1
     return HttpResponse(json.dumps(data), content_type='application/json')
