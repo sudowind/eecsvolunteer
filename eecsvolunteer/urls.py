@@ -34,4 +34,4 @@ urlpatterns = [
     url(r'^maintain/diagnose/', maintain.diagnose),
 
     url(r'^case_history/get_case_table/', case_history.get_case_table),
-]g
+]
