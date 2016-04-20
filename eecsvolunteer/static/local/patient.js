@@ -27,8 +27,9 @@ function add_case() {
             if (data['code'] == 1) {
                 tips('添加成功', 'success');
                 var wait_count = data['wait_count'];
+                var id = data['id']
                 $('#info_message').html(
-                    '<span style="color: green">还需等待' + wait_count.toString() + '人</span>'
+                    '<span style="color: green">流水号:' + id + ',还需等待' + wait_count.toString() + '人</span><br />'
                 );
             }
             else {

@@ -17,14 +17,15 @@ def index(request):
 @csrf_exempt
 def add_case(request):
     data = dict()
+    activity = Activity.objects.order_by('-id')[0]
     if request.method == 'POST':
         owner = request.POST.get('owner', '')
         contact = request.POST.get('contact', '')
         model = request.POST.get('model', '')
         problem = request.POST.get('problem', '')
-        activity = Activity.objects.order_by('-id')[0]
         case = CaseHistory(owner=owner, contact=contact, computer_model=model, problem=problem, activity=activity)
         case.save()
+        data['id'] = getattr(case, 'id')
         data['code'] = 1
     else:
         data['code'] = 0
