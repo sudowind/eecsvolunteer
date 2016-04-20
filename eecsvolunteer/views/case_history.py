@@ -1,8 +1,7 @@
 # coding=utf-8
 import json
+
 from django.http import HttpResponse
-from django.shortcuts import redirect, render_to_response
-from django.template import RequestContext
 
 from eecsvolunteer.logic.utils import qset2list
 from genius.models import CaseHistory

@@ -2,6 +2,7 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render_to_response
+from django.views.decorators.csrf import csrf_exempt
 
 from genius.models import CaseHistory
 
@@ -31,6 +32,7 @@ def apply(request):
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
+@csrf_exempt
 def success(request):
     data = dict()
     if request.method == 'POST':
