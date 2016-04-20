@@ -6,12 +6,13 @@
         <div class="col-md-12 col-xs-12">
             <h1> 维修记录 </h1>
             <div class="form-inline">
-                <label>选择活动日期:</label>
+                <label for="activity">选择活动日期:</label>
                 <select class="form-control" id="activity" onchange="load_case_table()"></select>
             </div>
             <table id="case_table" data-show-columns="true">
                 <thead>
                     <tr>
+                        <th data-field="id" data-align="center" data-valign="middle">流水号</th>
                         <th data-field="computer_model" data-align="center" data-valign="middle">型号</th>
                         <th data-field="problem" data-align="center" data-valign="middle">问题描述</th>
                         <th data-field="status" data-align="center" data-valign="middle" data-formatter="status_formatter">状态</th>
@@ -29,7 +30,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="deleteModalLabel">确认维修</h4>
                 </div>
-                <div class="modal-body" style="max-height: 266.4px; overflow-y: auto;">
+                <div class="modal-body" style="max-height: 266px; overflow-y: auto;">
                     该病例不处于待维修状态,可能有人正在维修或已维修完毕,确认进行维修申请?
                 </div>
                 <div class="modal-footer">
@@ -49,23 +50,23 @@
                 </div>
                 <div class="modal-body" style="overflow-y: auto;">
                     <div class="form-group">
-                        <label> 机主:</label>
+                        <label for="owner"> 机主:</label>
                         <span id="owner"></span>
                     </div>
                     <div class="form-group">
-                        <label> 型号:</label>
+                        <label for="computer_model"> 型号:</label>
                         <span id="computer_model"></span>
                     </div>
                     <div class="form-group">
-                        <label> 问题:</label>
+                        <label for="problem"> 问题:</label>
                         <span id="problem"></span>
                     </div>
                     <div class="form-group">
-                        <label> 解决办法:</label>
+                        <label for="solution"> 解决办法:</label>
                         <textarea class="form-control" rows="3" id="solution"></textarea>
                     </div>
                     <div class="form-group">
-                        <label> 志愿者:</label>
+                        <label for="volunteer"> 志愿者:</label>
                         <input type="text" id="volunteer"/>
                     </div>
                 </div>

@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             {% load staticfiles %}
-{#            <h1 class="col-xs-12"><img src="{% static 'image/logo.png' %}" class="img-responsive">新建病历单</h1>#}
+{#            <h1 class="col-xs-12"><img src="{% static 'image/logo.png' %}" class="img-responsive col-xs-3" alt="Responsive image">新建病历单</h1>#}
             <h1 class="col-xs-12 col-md-12">新建病历单</h1>
-            <div class="form-inline col-xs-12 col-md-12">
+            <div id="case_form" class="form-inline col-xs-12 col-md-12">
                 <div class="form-group">
                     <label for="owner">姓名：</label>
                     <input type="text" class="form-control" id="owner" placeholder="填写姓名">
@@ -29,6 +29,9 @@
                 <br /><br />
                 <div id="info_message"></div>
                 <button class="btn btn-default" onclick="add_case()">新建病例单</button>
+            </div>
+            <div class="col-xs-12 com-md-12">
+                <button class="btn btn-default" onclick="$('#case_form').toggle(1000);">隐藏病例单</button>
             </div>
         </div>
     </div>
