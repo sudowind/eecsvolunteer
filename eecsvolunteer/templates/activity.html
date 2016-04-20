@@ -4,19 +4,21 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <h1> 电脑小队活动管理 </h1>
-            <table id="activity_table" data-show-columns="true">
-                <thead>
-                    <tr>
-                        <th data-field="date" data-align="center" data-valign="middle">时间</th>
-                        <th data-field="place" data-align="center" data-valign="middle">地点</th>
-                        <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="col-md-12 col-xs-12">
+                <h1> 电脑小队活动管理 </h1>
+                <table id="activity_table" data-show-columns="true">
+                    <thead>
+                        <tr>
+                            <th data-field="date" data-align="center" data-valign="middle">时间</th>
+                            <th data-field="place" data-align="center" data-valign="middle">地点</th>
+                            <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
         <div class="row">
-            <div class="form-inline">
+            <div class="form-inline col-md-12 col-xs-12">
                 <div class="form-group">
                     <label for="activity_date"><span>活动时间：</span></label>
                     <input type="text" class="form-control" id="activity_date" placeholder="格式：yyyyMMdd">

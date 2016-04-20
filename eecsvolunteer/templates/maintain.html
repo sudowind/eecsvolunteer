@@ -4,17 +4,19 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <h1> 维修记录 </h1>
-            <table id="case_table" data-show-columns="true">
-                <thead>
-                    <tr>
-                        <th data-field="computer_model" data-align="center" data-valign="middle">型号</th>
-                        <th data-field="problem" data-align="center" data-valign="middle">问题描述</th>
-                        <th data-field="status" data-align="center" data-valign="middle" data-formatter="status_formatter">状态</th>
-                        <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="col-md-12 col-xs-12">
+                <h1> 维修记录 </h1>
+                <table id="case_table" data-show-columns="true">
+                    <thead>
+                        <tr>
+                            <th data-field="computer_model" data-align="center" data-valign="middle">型号</th>
+                            <th data-field="problem" data-align="center" data-valign="middle">问题描述</th>
+                            <th data-field="status" data-align="center" data-valign="middle" data-formatter="status_formatter">状态</th>
+                            <th data-field="id" data-align="center" data-valign="middle" data-formatter="id_formatter">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 
