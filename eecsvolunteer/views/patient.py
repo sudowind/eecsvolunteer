@@ -8,10 +8,22 @@ from genius.models import CaseHistory, Activity, CaseHistoryStatus
 
 
 def index(request):
-    content = {
-        'current_page': 'Patient'
-    }
-    return render_to_response('templates/patient.html', content)
+    if 'id' in request.session:
+        cid = request.session['id']
+        case = CaseHistory.objects.filter(id=cid).values().first()
+        activity = Activity.objects.order_by('-id')[0]
+        wait_count = CaseHistory.objects.filter(activity=activity, status=CaseHistoryStatus.waiting_for_repair).count()
+        case['wait_count'] = wait_count
+        content = {
+            'current_page': 'Patient',
+            'case': case
+        }
+        return render_to_response('templates/patient/patient_submit.html', content)
+    else:
+        content = {
+            'current_page': 'Patient'
+        }
+        return render_to_response('templates/patient/patient.html', content)
 
 
 @csrf_exempt
@@ -25,11 +37,9 @@ def add_case(request):
         problem = request.POST.get('problem', '')
         case = CaseHistory(owner=owner, contact=contact, computer_model=model, problem=problem, activity=activity)
         case.save()
-        data['id'] = getattr(case, 'id')
         data['code'] = 1
+        request.session['id'] = data['id']
     else:
         data['code'] = 0
         data['msg'] = 'POST required'
-    wait_count = CaseHistory.objects.filter(activity=activity, status=CaseHistoryStatus.waiting_for_repair).count()
-    data['wait_count'] = wait_count - 1
     return HttpResponse(json.dumps(data), content_type='application/json')

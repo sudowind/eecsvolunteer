@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% load staticfiles %}
+            <h2 class="col-md-12 col-xs-12">已创建病历单</h2>
+{#            <h1 class="col-xs-12"><img src="{% static 'image/logo.png' %}" class="img-responsive col-xs-3" alt="Responsive image">新建病历单</h1>#}
+            <div id="case_info" class="col-md-12 col-xs-12">
+                <div id="owner_info">机主：{{ case.owner }}</div>
+                <div id="contact_info">联系方式：{{ case.contact }}</div>
+                <div id="model_info">电脑型号：{{ case.computer_model }}</div>
+                <div id="problem_info">问题描述：{{ case.problem }}</div>
+                <div id="num_info">流水号：{{ case.id }}</div>
+                <div id="wait_info">还需等待人数：{{ case.wait_count }}</div>
+                <button class="btn btn-default" onclick="$('#create_case').show(500);">添加病例单</button>
+            </div>
+            <div id="create_case">
+                <div id="case_form" class="form-inline col-xs-12 col-md-12" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="owner">姓名：</label>
+                        <input type="text" class="form-control" id="owner" placeholder="填写姓名">
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        <label for="contact">联系方式：</label>
+                        <input type="tel" class="form-control" id="contact" placeholder="手机号">
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        <label for="computer_model">电脑型号：</label>
+                        <input type="text" class="form-control" id="computer_model" placeholder="填写电脑型号">
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        <label for="problem">问题描述：</label>
+                        <textarea class="form-control" id="problem"></textarea>
+                    </div>
+                    <br /><br />
+                    <div id="info_message"></div>
+                    <button class="btn btn-default" onclick="add_case()">新建病例单</button>
+                    <button class="btn btn-default" onclick="add_case()">新建病例单</button>
+                </div>
+{#                <div class="col-xs-12 com-md-12">#}
+{#                    <button class="btn btn-default" onclick="$('#case_form').toggle();">隐藏病例单</button>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrajs %}
+    <script type="text/javascript">
+        $('#create_case').hide();
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+    </script>
+    {% load staticfiles %}
+    <script src="{% static 'local/patient.js' %}" type="text/javascript"></script>
+{% endblock %}

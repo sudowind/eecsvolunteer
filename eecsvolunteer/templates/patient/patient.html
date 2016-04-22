@@ -5,6 +5,15 @@
         <div class="row">
             {% load staticfiles %}
 {#            <h1 class="col-xs-12"><img src="{% static 'image/logo.png' %}" class="img-responsive col-xs-3" alt="Responsive image">新建病历单</h1>#}
+            <div id="case_info" class="col-md-12 col-xs-12">
+                <div id="owner_info"></div>
+                <div id="contact_info"></div>
+                <div id="model_info"></div>
+                <div id="problem_info"></div>
+                <div id="num_info"></div>
+                <div id="wait_info"></div>
+                <button class="btn btn-default" onclick="$('#create_case').show(100);">添加病例单</button>
+            </div>
             <div id="create_case">
                 <h1 class="col-xs-12 col-md-12">新建病历单</h1>
                 <div id="case_form" class="form-inline col-xs-12 col-md-12">
@@ -35,19 +44,12 @@
 {#                    <button class="btn btn-default" onclick="$('#case_form').toggle();">隐藏病例单</button>#}
 {#                </div>#}
             </div>
-            <div id="case_info" class="col-md-12 col-xs-12">
-                <div id="owner_info"></div>
-                <div id="contact_info"></div>
-                <div id="model_info"></div>
-                <div id="problem_info"></div>
-                <div id="num_info"></div>
-                <div id="wait_info"></div>
-            </div>
         </div>
     </div>
 {% endblock %}
 {% block extrajs %}
     <script type="text/javascript">
+        $('#case_info').hide();
         $.ajaxSetup({
             data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
         });
