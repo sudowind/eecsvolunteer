@@ -37,6 +37,7 @@ def add_case(request):
         problem = request.POST.get('problem', '')
         case = CaseHistory(owner=owner, contact=contact, computer_model=model, problem=problem, activity=activity)
         case.save()
+        data['id'] = getattr(case, 'id')
         data['code'] = 1
         request.session['id'] = data['id']
     else:

@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth.views import login
+from django.contrib.auth.views import logout
 
 from eecsvolunteer.views import home, activity, patient, maintain, case_history
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/login/$',  login),
+    url(r'^accounts/logout/$', logout),
+
     url(r'^home/$', home.login),
     url(r'^activity/$', activity.index),
     url(r'^activity/delete/', activity.delete),
