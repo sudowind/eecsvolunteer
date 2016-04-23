@@ -4,3 +4,4 @@
 # python
 *.pyc
 *.pyo
+db_settings.py

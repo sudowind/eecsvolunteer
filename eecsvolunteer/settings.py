@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import db_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,15 +77,7 @@ WSGI_APPLICATION = 'eecsvolunteer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eecs_test',
-        'USER': 'db_user',
-        'PASSWORD': '123456',
-        'HOST': '120.27.44.159',
-    }
-}
+
 
 
 # Password validation

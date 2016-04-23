@@ -45,6 +45,7 @@ def add_case(request):
         data['id'] = getattr(case, 'id')
         data['code'] = 1
         request.session['id'] = data['id']
+        request.session['owner'] = owner
     else:
         data['code'] = 0
         data['msg'] = 'POST required'
