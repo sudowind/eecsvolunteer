@@ -11,6 +11,11 @@ def index(request):
     if 'id' in request.session:
         cid = request.session['id']
         case = CaseHistory.objects.filter(id=cid).values().first()
+        if case['status'] == CaseHistoryStatus.repaired:
+            content = {
+                'current_page': 'Patient'
+            }
+            return render_to_response('templates/patient/patient.html', content)
         activity = Activity.objects.order_by('-id')[0]
         wait_count = CaseHistory.objects.filter(activity=activity, status=CaseHistoryStatus.waiting_for_repair).count()
         case['wait_count'] = wait_count

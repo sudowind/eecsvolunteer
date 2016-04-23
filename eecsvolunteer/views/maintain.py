@@ -52,7 +52,7 @@ def success(request):
                 data['code'] = 1
         else:
             data['code'] = 0
-            data['msg'] = 'invalid solution or volunteer'
+            data['msg'] = '未填写解决方案或志愿者'
     else:
         data['code'] = 0
         data['msg'] = 'POST required'
@@ -65,7 +65,7 @@ def fail(request):
     cases = CaseHistory.objects.filter(id=cid)
     if len(cases) == 0:
         data['code'] = 0
-        data['msg'] = 'Id does not exist'
+        data['msg'] = 'ID不存在'
     else:
         cases[0].status = 1
         cases[0].save()

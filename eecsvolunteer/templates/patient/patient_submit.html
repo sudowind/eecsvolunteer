@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             {% load staticfiles %}
-            <h2 class="col-md-12 col-xs-12">已创建病历单</h2>
+            <h2 class="col-md-12 col-xs-12">已创建病历单<br/><small>刷新页面可实时查看等待人数</small></h2>
 {#            <h1 class="col-xs-12"><img src="{% static 'image/logo.png' %}" class="img-responsive col-xs-3" alt="Responsive image">新建病历单</h1>#}
             <div id="case_info" class="col-md-12 col-xs-12">
                 <div id="owner_info">机主：{{ case.owner }}</div>
@@ -13,7 +13,7 @@
                 <div id="problem_info">问题描述：{{ case.problem }}</div>
                 <div id="num_info">流水号：{{ case.id }}</div>
                 <div id="wait_info">还需等待人数：{{ case.wait_count }}</div>
-                <button class="btn btn-default" onclick="$('#create_case').show(500);">添加病例单</button>
+{#                <button class="btn btn-default" onclick="$('#create_case').toggle(500);">添加病例单</button>#}
             </div>
             <div id="create_case">
                 <div id="case_form" class="form-inline col-xs-12 col-md-12" style="margin-top: 20px;">

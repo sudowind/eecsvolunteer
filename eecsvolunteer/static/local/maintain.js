@@ -111,7 +111,9 @@ function load_case_table() {
         classes: 'table table-condensed table-hover table-striped',
         dataType: 'json',
         pagination: true,
-        pageSize: 10
+        pageSize: 10,
+        showRefresh: true,
+        search: true
     });
 }
 
