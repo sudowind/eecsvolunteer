@@ -17,7 +17,7 @@ def index(request):
             }
             return render_to_response('templates/patient/patient.html', content)
         activity = Activity.objects.order_by('-id')[0]
-        wait_count = CaseHistory.objects.filter(activity=activity, status=CaseHistoryStatus.waiting_for_repair).count()
+        wait_count = CaseHistory.objects.filter(activity=activity, status=CaseHistoryStatus.waiting_for_repair, id__lt=cid).count()
         case['wait_count'] = wait_count
         content = {
             'current_page': 'Patient',

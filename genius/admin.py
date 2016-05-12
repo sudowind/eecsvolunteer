@@ -9,7 +9,7 @@ class ActivityAdmin(admin.ModelAdmin):
 
 
 class CaseHistoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'owner', 'computer_model', 'status')
+    list_display = CaseHistory._meta.get_all_field_names()
 
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(CaseHistory, CaseHistoryAdmin)

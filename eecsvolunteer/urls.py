@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth.views import login
 from django.contrib.auth.views import logout
 
-from eecsvolunteer.views import home, activity, patient, maintain, case_history
+from eecsvolunteer.views import home, activity, patient, maintain, case_history, login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -40,4 +40,6 @@ urlpatterns = [
     url(r'^maintain/fail/', maintain.fail),
 
     url(r'^case_history/get_case_table/', case_history.get_case_table),
+
+    url(r'^login/', login.index),
 ]
