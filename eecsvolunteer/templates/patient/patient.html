@@ -19,7 +19,7 @@
                 <div id="case_form" class="form-inline col-xs-12 col-md-12">
                     <div class="form-group">
                         <label for="owner">姓名：</label>
-                        <input type="text" class="form-control" id="owner" placeholder="填写姓名">
+                        <input type="text" class="form-control" id="owner" placeholder="填写姓名" data-provide="typeahead" data-source='["wang","wind","feng"]'>
                     </div>
                     <br /><br />
                     <div class="form-group">
@@ -40,6 +40,7 @@
                     <div id="info_message"></div>
                     <button class="btn btn-default" onclick="add_case()">新建病历单</button>
                 </div>
+
 {#                <div class="col-xs-12 com-md-12">#}
 {#                    <button class="btn btn-default" onclick="$('#case_form').toggle();">隐藏病例单</button>#}
 {#                </div>#}
@@ -55,5 +56,6 @@
         });
     </script>
     {% load staticfiles %}
+    <script src='{% static "js/bootstrap3-typeahead.js" %}' type="text/javascript"></script>
     <script src="{% static 'local/patient.js' %}" type="text/javascript"></script>
 {% endblock %}

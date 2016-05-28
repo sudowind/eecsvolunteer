@@ -21,6 +21,11 @@
 <body>
     {% block content %}
     {% endblock %}
+    {% block footer %}
+    <div id="footer" style="background-color: lightgrey; text-align: center; position: absolute; bottom: 0; width: 100%; font-family: 'Microsoft YaHei UI';">
+        <div style="color: #246aa5; padding: 10px;"><span>{% load staticfiles %}<img src='{% static "image/favicon.ico" %}'>&nbsp;</span>北京大学信息科学技术学院青年志愿者协会</div>
+    </div>
+    {% endblock %}
     {% block extrajs %}
 
     {% endblock %}
